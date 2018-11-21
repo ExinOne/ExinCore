@@ -64,29 +64,26 @@ require 'vendor/autoload.php';
 
 use Ramsey\Uuid\Uuid;
 
-$asset_uuid = 'c6d0c728-2624-429b-8e0d-d9d19b6592fa';
-
 $memo = base64_encode(msgpack_pack([
-    'A' => Uuid::fromString($asset_uuid)->getBytes(),
+    'A' => Uuid::fromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa")->getBytes(),
 ]));
 ```
 
 **Ruby**
 
-安装 msgpack 扩展：
+Install msgpack extension:
 
 ```
 sudo gem install msgpack
 ```
 
-编码：
+Example:
 
 ```ruby
 require 'msgpack'
 require 'base64'
 
-asset_uuid = "c6d0c728-2624-429b-8e0d-d9d19b6592fa"
-memo = Base64.encode64(MessagePack.pack(asset_uuid))
+memo = Base64.encode64(MessagePack.pack("c6d0c728-2624-429b-8e0d-d9d19b6592fa"))
 ```
 
 
