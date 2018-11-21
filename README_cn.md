@@ -171,7 +171,7 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 
 ## 手续费
 
-- 成交部分，0.2%
+- 2018年12月15日之前免费，之后收取成交部分的0.2%
 - 从兑换后的数字币中扣除
 - 暂不支持手续费点卡 (EPC) 抵扣
 
@@ -205,16 +205,20 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
     <img src="./logos/Huobi.png" height="80">
   </a>
   &nbsp;
-  <a target="_blank" href="https://www.huobi.com">
+  <a target="_blank" href="https://www.binance.com">
     <img src="./logos/Binance.png" height="80">
   </a>
   &nbsp;
-  <a target="_blank" href="https://www.huobi.com">
+  <a target="_blank" href="https://www.okex.com">
     <img src="./logos/okex.png" height="80">
   </a>
   &nbsp;
-  <a target="_blank" href="https://www.huobi.com">
+  <a target="_blank" href="https://fcoin.com">
     <img src="./logos/FCoin.png" height="80">
+  </a>
+  &nbsp;
+  <a target="_blank" href="https://big.one">
+    <img src="./logos/BigOne.png" height="80">
   </a>
 </p>
 

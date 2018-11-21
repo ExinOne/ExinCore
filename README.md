@@ -8,13 +8,13 @@ ExinCore is a decentralized **instant exchange platform** built on Mixin Network
 
 All order and trade data are encoded in the Mixin snapshots' memo field, the memo is base64 encoded MessagePack.
 
-ExinCore is available to professional users with programming skills, general user will not only enjoy the Instant-Exchange service, but also the OTC service with ExinOne (https://exinone.com).
+ExinCore is available to professional users with programming skills, general user enjoy the Instant-Exchange service, and the OTC service at ExinOne (https://exinone.com).
 
 
 ## Features
 
 - **Safe**: decentralized exchange, keeping assets by yourself, and no need to trust ExinCore.
-- **High Liquidity**: every exchange pair will connect to the best liquidity exchange to ensure market price.
+- **High Liquidity**: all pairs will connect to the best liquidity exchange to ensure trade at right market price.
 - **Free**: Mixin Network is a free and lightning fast peer-to-peer transactional network for digital assets.
 - **Fast**: API to exchanges trade, complete the transaction within 1 second.
 - **Cross-chain**：ExinCore can support all assets supported by the Mixin Network, now support `BTC` `ETH` `BCH` `EOS` `USDT` and so on.
@@ -171,11 +171,11 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 |minimum\_amount			|The minimum of pay asset|
 |maximum\_amount			|The maximum of pay asset|
 |exchanges				|The exchange platforms|
-|price						|The exchange price, `echange_asset` price/`base_asset` price，for reference only, subject to actual transaction price|
+|price						|The trade price, `echange_asset` price/`base_asset` price, for reference only, subject to actual transaction price|
 
 ## Fee
 
-- 0.2% of the filled part
+- 0.2% of the filled part after December 15, 2018, and free before the time
 - Deduct from the exchange asset
 - Not support the *ExinOne Point Card* (EPC)
 
@@ -209,16 +209,20 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
     <img src="./logos/Huobi.png" height="80">
   </a>
   &nbsp;
-  <a target="_blank" href="https://www.huobi.com">
+  <a target="_blank" href="https://www.binance.com">
     <img src="./logos/Binance.png" height="80">
   </a>
   &nbsp;
-  <a target="_blank" href="https://www.huobi.com">
+  <a target="_blank" href="https://www.okex.com">
     <img src="./logos/okex.png" height="80">
   </a>
   &nbsp;
-  <a target="_blank" href="https://www.huobi.com">
+  <a target="_blank" href="https://fcoin.com">
     <img src="./logos/FCoin.png" height="80">
+  </a>
+  &nbsp;
+  <a target="_blank" href="https://big.one">
+    <img src="./logos/BigOne.png" height="80">
   </a>
 </p>
 
