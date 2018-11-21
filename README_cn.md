@@ -51,7 +51,7 @@ PHP:
 $asset_uuid='c6d0c728-2624-429b-8e0d-d9d19b6592fa';
 
 base64_encode(msgpack_pack([
-    A => Uuid::fromString($asset_uuid)->getBytes(),
+    'A' => Uuid::fromString($asset_uuid)->getBytes(),
 ]));
 ```
 
@@ -62,27 +62,27 @@ base64_encode(msgpack_pack([
 
 ```golang
 type OrderAction struct {
-	C	integer		// code
-	P	string		// price, only type is return
-	F	string		// ExinCore fee, only type is return
-	FA	string		// ExinCore fee asset, only type is return
-	T	string		// type: refund(F)|return(R)|Error(E)
-	O	uuid.UUID	// order: trace_id
+    C	integer		// code
+    P	string		// price, only type is return
+    F	string		// ExinCore fee, only type is return
+    FA	string		// ExinCore fee asset, only type is return
+    T	string		// type: refund(F)|return(R)|Error(E)
+    O	uuid.UUID	// order: trace_id
 }
 
 memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
-	C: 1000,
-	P: "0.46372",
-	F:	"0.000023",
-	FA: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
-	T: "F"
-	O: uuid.FromString("37af6bd0-ecb8-11e8-9be4-3be93718305e"),
+    C: 1000,
+    P: "0.46372",
+    F:	"0.000023",
+    FA: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
+    T: "F"
+    O: uuid.FromString("37af6bd0-ecb8-11e8-9be4-3be93718305e"),
 }))
 
 memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
-	C: 1000,
-	T: "F"
-	O: uuid.FromString("37af6bd0-ecb8-11e8-9be4-3be93718305e"),
+    C: 1000,
+    T: "F"
+    O: uuid.FromString("37af6bd0-ecb8-11e8-9be4-3be93718305e"),
 }))
 ```
 
