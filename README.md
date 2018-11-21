@@ -222,7 +222,7 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
   </a>
   &nbsp;
   <a target="_blank" href="https://big.one">
-    <img src="./logos/BigOne.png" height="80">
+    <img src="./logos/BigONE.png" height="80">
   </a>
 </p>
 
