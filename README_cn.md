@@ -169,11 +169,10 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 
 <p align="left">
   <a target="_blank" href="https://mixin.one">
-    <img src="./logos/Mixin.png" width="250">
+  	<img src="./logos/Mixin.png" height="80">
   </a>
-  &nbsp;
   <a target="_blank" href="https://mixin.one">
-    <img src="./logos/Huobi.png" width="350">
+  	<img src="./logos/Huobi.png" height="80">
   </a>
 </p>
 
@@ -183,10 +182,10 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 
 <p align="left">
   <a target="_blank" href="https://mixin.one">
-    <img src="./logos/ExinOne.png" width="250">
+    <img src="./logos/ExinOne.png" height="80">
   </a>
   &nbsp;
   <a target="_blank" href="https://mixin.one">
-    <img src="./logos/ExinPay.png" width="250">
+    <img src="./logos/ExinPay.png" height="80">
   </a>
 </p>
