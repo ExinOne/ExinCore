@@ -154,12 +154,10 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 |1007 |refund |Below the minimum exchange amount |低于最少兑换金额 |
 |1008 |refund |Exceeding the maximum exchange amount |多于最大兑换金额 |
 
-
 ## 联系我们
 
 - Wechat：VGhvcmJKIA==
 - Email ：dGhvcmJAZXhpbi5vbmU=
-
 
 ## 基于
 
