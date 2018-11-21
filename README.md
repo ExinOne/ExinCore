@@ -143,20 +143,20 @@ Get the ExinCore the support list of instent exchange with `base_asset `(optiona
 GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d694fa620a
 
 {
-	"code": 0,
-	"data": [
-		{
-			"base_asset": "815b0b1a-2764-3736-8faa-42d694fa620a",
-			"base_asset_symbol": "USDT",
-			"echange_asset": "c6d0c728-2624-429b-8e0d-d9d19b6592fa",
-			"echange_asset_symbol": "BTC",
-			"minimum_amount": "1",
-			"maximum_amount": "100",
-			"exchanges": ["Huobi Global"],
-			"price": "5372"
-		}
-	],
-	"message": "success"
+  "code": 0,
+  "data": [
+    {
+      "base_asset": "815b0b1a-2764-3736-8faa-42d694fa620a",
+      "base_asset_symbol": "USDT",
+      "echange_asset": "c6d0c728-2624-429b-8e0d-d9d19b6592fa",
+      "echange_asset_symbol": "BTC",
+      "minimum_amount": "1",
+      "maximum_amount": "100",
+      "exchanges": ["Huobi Global"],
+      "price": "5372"
+    }
+  ],
+  "message": "success"
 }
 ```
 
