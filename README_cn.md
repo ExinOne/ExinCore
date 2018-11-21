@@ -35,7 +35,7 @@ type OrderAction struct {
     A	uuid.UUID	// asset uuid
 }
 
-memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
+memo := base64.StdEncoding.EncodeToString(msgpack(OrderAction{
     A: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
 }))
 ```
@@ -48,11 +48,20 @@ PHP:
 > 	* composer require ramsey/uuid
 
 ```php
-$asset_uuid='c6d0c728-2624-429b-8e0d-d9d19b6592fa';
+$asset_uuid = 'c6d0c728-2624-429b-8e0d-d9d19b6592fa';
 
-base64_encode(msgpack_pack([
+$memo = base64_encode(msgpack_pack([
     'A' => Uuid::fromString($asset_uuid)->getBytes(),
 ]));
+```
+
+Ruby:
+```ruby
+require 'msgpack'
+require 'base64'
+
+asset_uuid = "c6d0c728-2624-429b-8e0d-d9d19b6592fa";
+memo = Base64.encode64(MessagePack.pack(asset_uuid))
 ```
 
 
