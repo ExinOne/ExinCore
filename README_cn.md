@@ -32,11 +32,11 @@ Golang:
 
 ```golang
 type OrderAction struct {
-	A	uuid.UUID	// asset uuid
+    A	uuid.UUID	// asset uuid
 }
 
 memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
-	A: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
+    A: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
 }))
 ```
 
@@ -49,6 +49,7 @@ PHP:
 
 ```php
 $asset_uuid='c6d0c728-2624-429b-8e0d-d9d19b6592fa';
+
 base64_encode(msgpack_pack([
     A => Uuid::fromString($asset_uuid)->getBytes(),
 ]));
