@@ -43,7 +43,7 @@ memo := base64.StdEncoding.EncodeToString(msgpack(OrderAction{
 PHP:
 > 前置条件：
 > * 安装 msgpack 扩展
-> 	* `pecl install msgpack`
+> 	* `sudo pecl install msgpack`
 > * 使用 Composer 引入 `ramsey/uuid` package
 > 	* composer require ramsey/uuid
 
@@ -56,11 +56,15 @@ $memo = base64_encode(msgpack_pack([
 ```
 
 Ruby:
+> 前置条件：
+> * 安装 msgpack 扩展
+> 	* `sudo gem install msgpack`
+
 ```ruby
 require 'msgpack'
 require 'base64'
 
-asset_uuid = "c6d0c728-2624-429b-8e0d-d9d19b6592fa";
+asset_uuid = "c6d0c728-2624-429b-8e0d-d9d19b6592fa"
 memo = Base64.encode64(MessagePack.pack(asset_uuid))
 ```
 
