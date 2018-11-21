@@ -3,7 +3,7 @@
 
 # ExinCore
 
-ExinCore 是基于 Mixin Network 的去中心化数字资产闪兑平台。只需要发送一笔包含拟兑换的数字币UUID转账给 ExinCore 账户，ExinCore 就对自动将交易通过 API 提交给相应的交易所（目前支持`币安` `火币全球` `BigOne` `Okex` `FCoin`），完成后将兑换后的数字币原路转回，整个过程不到1秒即可完成兑换。
+ExinCore 是基于 Mixin Network 的去中心化数字资产闪兑平台。只需要发送一笔包含拟兑换的数字币UUID转账给 ExinCore 账户，ExinCore 就对自动将交易通过 API 提交给相应的交易所（目前支持`币安` `火币全球` `BigOne` `Okex` `FCoin`），完成后将兑换后的数字币原路转回，整个过程不到1秒即可完成兑换。所有交易数据均编码后上链。
 
 ExinCore 主要提供给具备开发能力的专业用户使用，普通用户使用 ExinOne (https://exinone.com) 即可以享受去中心化的闪兑服务，ExinOne 同时还提供法币交易服务。
 
@@ -14,17 +14,20 @@ ExinCore 主要提供给具备开发能力的专业用户使用，普通用户�
 - **流动性好**：每一个交易对都会对接流动性最好的交易所，确保市场价成交
 - **便宜**：不同于链上转账，在 Mixin Networkd 转账无需手续费，交易手续费也仅收取 0.2%
 - **快**：收到订单之后，我们会立即利用自由资金池在交易所交易，1秒之内即可完成整个交易转账过程
-- **全币种**：理论上 ExinCore 可以支持所有 Mixin Network 支持的公链所有币，目前已经支持`BTC` `ETH` `BCH` `EOS`等主流币种之间的兑换
+- **跨链**：理论上 ExinCore 可以支持所有 Mixin Network 支持的公链所有币，目前已经支持`BTC` `ETH` `BCH` `EOS` `USDT`等主流币种之间的兑换
 
 
 ## 创建订单
 
-将 10USDT 兑换为 BTC，只需要在 Mixin Network 上将 10USDT 转给 ExinCore 并携带经过编码的Memo，如：
+将 10USDT 兑换为 BTC，只需要在 Mixin Network 上将 10USDT 转给 ExinCore (61103d28-3ac2-44a2-ae34-bd956070dab1) 并携带经过 Base64 编码的 MessagePack 格式 Memo，如：
+
 https://mixin.one/pay?recipient=61103d28-3ac2-44a2-ae34-bd956070dab1&asset=815b0b1a-2764-3736-8faa-42d694fa620a&amount=10&trace=2c89ae40-ed6c-11e8-82ee-1b1d15485280&memo=gaFBsMbQxygmJEKbjg3Z0Ztlkvo=
 
 ### 转账
 
-请参考 Mixin Network 开发文档：https://developers.mixin.one/api/alpha-mixin-network/transfer/
+请参考 Mixin Network 开发文档：
+
+https://developers.mixin.one/api/alpha-mixin-network/transfer/
 
 ### Memo 编码示例
 
@@ -119,14 +122,14 @@ memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
 
 **参数说明**
 
-|Parameter|Description|
+|参数|描述|
 |:---|:---|
-|`C`|交易状态编码，详见下方[说明](#状态码)|
-|`P`|成交价格，包含交易所手续费，如果交易不成功则为0|
-|`F`|ExinCore 手续费|
-|`FA`|ExinCore 手续费资产|
-|`T`|转账类型，`F`表示refund退币，如果memo不是合法编码数据将不会退币，`R`表示return兑换返回，`E`表示error转账失败（比如突然资金池不足），将会以一笔小额EPC转账携带，资金池充裕后会重新发起转账|
-|`O`|订单ID，与发起转移转账的`trace_id`相同|
+|C|交易状态编码，详见下方[说明](#状态码)|
+|P|成交价格，包含交易所手续费，如果交易不成功则为0|
+|F|ExinCore 手续费|
+|FA|ExinCore 手续费资产|
+|T|转账类型，`F`表示refund退币，如果memo不是合法编码数据将不会退币，`R`表示return兑换返回，`E`表示error转账失败（比如突然资金池不足），将会以一笔小额EPC转账携带，资金池充裕后会重新发起转账|
+|O|订单ID，与发起转移转账的`trace_id`相同|
 
 ## 兑换列表API
 
@@ -155,7 +158,7 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 
 **参数说明**
 
-|Parameter|Description|
+|参数|描述|
 |:---|:---|
 |base\_asset|支付兑换的资产UUID|
 |base\_asset\_symbol|支付兑换的资产|
@@ -174,22 +177,22 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 
 ## 状态码
 
-|Code |Type |Description |Cn |
-|:-- |:-- |:-- |:-- |
-|1000 |return |Successful Exchange |交易成功 |
-|1001 |refund |The order not found or invalid |订单不存在或者交易非法 |
-|1002 |refund |The request data is invalid |请求数据非法 |
-|1003 |refund |The market not supported |交易对不支持 |
-|1004 |refund |Failed exchange |交易失败 |
-|1005 |return\|refund |Partial exchange |部分成交 |
-|1006 |error |Insufficient pool|资金池不足 |
-|1007 |refund |Below the minimum exchange amount |低于最少兑换金额 |
-|1008 |refund |Exceeding the maximum exchange amount |多于最大兑换金额 |
+|状态码 |类型 | 描述 |
+|:-- |:-- |:-- |
+|1000 |return |交易成功 |
+|1001 |refund |订单不存在或者交易非法 |
+|1002 |refund |请求数据非法 |
+|1003 |refund |交易对不支持 |
+|1004 |refund |交易失败 |
+|1005 |return\|refund |部分成交 |
+|1006 |error |资金池不足 |
+|1007 |refund |低于最少兑换金额 |
+|1008 |refund |多于最大兑换金额 |
 
 ## 联系我们
 
-- Wechat：ThorbJ
-- Email ：thorb@exin.one
+- 微信：ThorbJ
+- 邮箱：thorb@exin.one
 
 ## 基于
 
