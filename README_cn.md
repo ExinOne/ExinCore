@@ -10,25 +10,25 @@ ExinCore 主要提供给具备开发能力的专业用户使用，普通用户�
 
 ## 优势
 
-- `安全`：去中心化交易，不托管资产，自己保管钱包，无需信任 ExinCore
-- `流动性好`：每一个交易对都会对接流动性最好的交易所，确保市场价成交
-- `便宜` 不同于链上转账，在 Mixin Networkd 转账无需手续费，交易手续费也仅收取 0.2%
-- `快`：收到订单之后，我们会立即利用自由资金池在交易所交易，1秒之内即可完成整个交易转账过程
-- `全币种`：理论上 ExinCore 可以支持所有 Mixin Network 支持的公链所有币，目前已经支持`BTC` `ETH` `BCH` `EOS`等主流币种之间的兑换
+- **安全**：去中心化交易，不托管资产，自己保管钱包，无需信任 ExinCore
+- **流动性好**：每一个交易对都会对接流动性最好的交易所，确保市场价成交
+- **便宜**：不同于链上转账，在 Mixin Networkd 转账无需手续费，交易手续费也仅收取 0.2%
+- **快**：收到订单之后，我们会立即利用自由资金池在交易所交易，1秒之内即可完成整个交易转账过程
+- **全币种**：理论上 ExinCore 可以支持所有 Mixin Network 支持的公链所有币，目前已经支持`BTC` `ETH` `BCH` `EOS`等主流币种之间的兑换
 
 
 ## 创建订单
 
-将 10USDT 兑换为 BTC，只需要在 Mixin Network 上将 10USDT 转给 ExinCore 并携带经过编码的Memo：
-```
-https://mixin.one/
-```
+将 10USDT 兑换为 BTC，只需要在 Mixin Network 上将 10USDT 转给 ExinCore 并携带经过编码的Memo，如：
+https://mixin.one/pay?recipient=61103d28-3ac2-44a2-ae34-bd956070dab1&asset=815b0b1a-2764-3736-8faa-42d694fa620a&amount=10&trace=2c89ae40-ed6c-11e8-82ee-1b1d15485280&memo=gaFBsMbQxygmJEKbjg3Z0Ztlkvo=
 
-## 转账
+### 转账
+
+请参考 Mixin Network 开发文档：https://developers.mixin.one/api/alpha-mixin-network/transfer/
 
 ### Memo 编码示例
 
-Golang:
+**Golang**
 
 ```golang
 type OrderAction struct {
@@ -40,14 +40,27 @@ memo := base64.StdEncoding.EncodeToString(msgpack(OrderAction{
 }))
 ```
 
-PHP:
-> 前置条件：
-> * 安装 msgpack 扩展
-> 	* `sudo pecl install msgpack`
-> * 使用 Composer 引入 `ramsey/uuid` package
-> 	* composer require ramsey/uuid
+**PHP**
+
+安装 msgpack 扩展：
+
+```
+sudo pecl install msgpack
+```
+
+引入包：
+
+```
+composer require ramsey/uuid
+```
+
+编码：
 
 ```php
+require 'vendor/autoload.php';
+
+use Ramsey\Uuid\Uuid;
+
 $asset_uuid = 'c6d0c728-2624-429b-8e0d-d9d19b6592fa';
 
 $memo = base64_encode(msgpack_pack([
@@ -55,10 +68,15 @@ $memo = base64_encode(msgpack_pack([
 ]));
 ```
 
-Ruby:
-> 前置条件：
-> * 安装 msgpack 扩展
-> 	* `sudo gem install msgpack`
+**Ruby**
+
+安装 msgpack 扩展：
+
+```
+sudo gem install msgpack
+```
+
+编码：
 
 ```ruby
 require 'msgpack'
@@ -99,11 +117,11 @@ memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
 }))
 ```
 
-**参数说明：**
+**参数说明**
 
 |Parameter|Description|
-|:---:|:---|
-|`C`|交易状态编码，详见下方说明|
+|:---|:---|
+|`C`|交易状态编码，详见下方[说明](#状态码)|
 |`P`|成交价格，包含交易所手续费，如果交易不成功则为0|
 |`F`|ExinCore 手续费|
 |`FA`|ExinCore 手续费资产|
@@ -135,17 +153,18 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 }
 ```
 
-**参数说明**：
+**参数说明**
+
 |Parameter|Description|
-|---:|:---|
-|`base_asset`|支付兑换的资产UUID|
-|`base_asset_symbol`|支付兑换的资产|
-|`echange_asset`|兑换资产UUID|
-|`echange_asset_symbol`|兑换资产|
-|`minimum_amount`|最少兑换数量(base_asset)，少于这个数字将退回|
-|`maximum_amount`|最多兑换数量(base_asset)，多余这个数字将退回|
-|`exchanges`|交易平台，以实际成交为准|
-|`price`|兑换价格，`echange_asset`价格/`base_asset`价格，仅供参考，以实际成交价为准|
+|:---|:---|
+|base\_asset|支付兑换的资产UUID|
+|base\_asset\_symbol|支付兑换的资产|
+|echange\_asset|兑换资产UUID|
+|echange\_asset\_symbol|兑换资产|
+|minimum\_amount|最少兑换数量(base_asset)，少于这个数字将退回|
+|maximum\_amount|最多兑换数量(base_asset)，多余这个数字将退回|
+|exchanges|交易平台，以实际成交为准|
+|price|兑换价格，`echange_asset`价格/`base_asset`价格，仅供参考，以实际成交价为准|
 
 ## 手续费
 
@@ -169,8 +188,8 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 
 ## 联系我们
 
-- Wechat：VGhvcmJKIA==
-- Email ：dGhvcmJAZXhpbi5vbmU=
+- Wechat：ThorbJ
+- Email ：thorb@exin.one
 
 ## 基于
 
@@ -179,7 +198,7 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
     <img src="./logos/Mixin.png" width="250">
   </a>
   &nbsp;
-  <a target="_blank" href="https://mixin.one">
+  <a target="_blank" href="https://www.huobi.com">
     <img src="./logos/Huobi.png" width="350">
   </a>
 </p>
@@ -188,11 +207,11 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 ## 谁在用
 
 <p align="left">
-  <a target="_blank" href="https://mixin.one">
+  <a target="_blank" href="https://exinone.com">
     <img src="./logos/ExinOne.png" width="250">
   </a>
   &nbsp;
-  <a target="_blank" href="https://mixin.one">
+  <a target="_blank" href="https://exinpay.one">
     <img src="./logos/ExinPay.png" width="250">
   </a>
 </p>
