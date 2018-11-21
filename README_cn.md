@@ -136,6 +136,7 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 ```
 
 **参数说明**：
+
 |Parameter|Description|
 |---:|:---|
 |`base_asset`|支付兑换的资产UUID|
