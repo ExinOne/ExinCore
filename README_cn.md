@@ -42,16 +42,14 @@ go get -u github.com/vmihailenco/msgpack
 ```golang
 import (
     "encoding/base64"
-    "fmt"
     "github.com/satori/go.uuid"
-    "gopkg.in/vmihailenco/msgpack.v2"
+    "github.com/vmihailenco/msgpack"
 )
 
 type OrderAction struct {
-    A	uuid.UUID	// asset uuid
+    A  uuid.UUID  // asset uuid
 }
 
-// 
 memo := base64.StdEncoding.EncodeToString(msgpack.Marshal(OrderAction{
     A: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
 }))
@@ -123,28 +121,27 @@ memo = Base64.encode64(MessagePack.pack({
 }))
 ```
 
-
 ## 交易返回
 
 交易后返回相应数字币，备注中返回相关交易信息：
 
 ```golang
 type OrderAction struct {
-    C	integer		// code
-    P	string		// price, only type is return
-    F	string		// ExinCore fee, only type is return
-    FA	string		// ExinCore fee asset, only type is return
-    T	string		// type: refund(F)|return(R)|Error(E)
-    O	uuid.UUID	// order: trace_id
+    C  integer    // code
+    P  string     // price, only type is return
+    F  string     // ExinCore fee, only type is return
+    FA string     // ExinCore fee asset, only type is return
+    T  string     // type: refund(F)|return(R)|Error(E)
+    O  uuid.UUID  // order: trace_id
 }
 
 memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
-    C: 1000,
-    P: "0.46372",
-    F:	"0.000023",
+    C:  1000,
+    P:  "0.46372",
+    F:  "0.000023",
     FA: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
-    T: "F"
-    O: uuid.FromString("37af6bd0-ecb8-11e8-9be4-3be93718305e"),
+    T:  "F"
+    O:  uuid.FromString("37af6bd0-ecb8-11e8-9be4-3be93718305e"),
 }))
 
 memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{

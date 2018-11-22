@@ -1,15 +1,12 @@
-
 <p align="center"><img src="./logos/ExinCore.png" width="300"></p>
 
 # ExinCore
-
 
 ExinCore is a decentralized **instant exchange platform** built on [Mixin Network](https://mixin.one), to use ExinCore, just send a asset transfer to ExinCore, ExinCore will auto use API to trade in exchange like `Binance`, `Huobi Global`, `BigOne`, `Okex`, `FCoin`, ruturn to pay account after exchange, complete within 1 second.
 
 All order and trade data are encoded in the Mixin snapshots' memo field, the memo is base64 encoded MessagePack.
 
 ExinCore is available to professional users with programming skills, general user enjoy the Instant-Exchange service, and the OTC service at [ExinOne](https://exinone.com).
-
 
 ## Features
 
@@ -19,13 +16,11 @@ ExinCore is available to professional users with programming skills, general use
 - **Fast**: API to exchanges trade, complete the transaction within 1 second.
 - **Cross-chain**：ExinCore can support all assets supported by the Mixin Network, now support `BTC` `ETH` `BCH` `EOS` `USDT` and so on.
 
-
 ## Create Order
 
-To exchange 10USDT to BTC, send a 10USDT transfer to ExinCore (61103d28-3ac2-44a2-ae34-bd956070dab1) with base64 encoded MessagePack data as the memo. Example:
+To exchange 10 USDT to BTC, send a 10 USDT transfer to ExinCore (61103d28-3ac2-44a2-ae34-bd956070dab1) with base64 encoded MessagePack data as the memo. Example:
 
 https://mixin.one/pay?recipient=61103d28-3ac2-44a2-ae34-bd956070dab1&asset=815b0b1a-2764-3736-8faa-42d694fa620a&amount=10&trace=2c89ae40-ed6c-11e8-82ee-1b1d15485280&memo=gaFBsMbQxygmJEKbjg3Z0Ztlkvo=
-
 
 ### Transfer
 
@@ -37,12 +32,23 @@ https://developers.mixin.one/api/alpha-mixin-network/transfer/
 
 **Golang**
 
-```golang
+```
+// You can use other msgpack implementations.
+go get -u github.com/vmihailenco/msgpack
+```
+
+```go
+import (
+    "encoding/base64"
+    "github.com/satori/go.uuid"
+    "github.com/vmihailenco/msgpack"
+)
+
 type OrderAction struct {
-    A	uuid.UUID	// asset uuid
+    A  uuid.UUID  // asset uuid
 }
 
-memo := base64.StdEncoding.EncodeToString(msgpack(OrderAction{
+memo := base64.StdEncoding.EncodeToString(msgpack.Marshal(OrderAction{
     A: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
 }))
 ```
@@ -84,34 +90,56 @@ pip install msgpack
 Example:
 
 ```python
-import uuid,msgpack,base64
+import uuid, msgpack, base64
 
 memo = base64.b64encode(msgpack.packb({
-	"A": uuid.UUID("{c6d0c728-2624-429b-8e0d-d9d19b6592fa}").bytes
-}));
+    "A": uuid.UUID("{c6d0c728-2624-429b-8e0d-d9d19b6592fa}").bytes
+}))
+```
+
+**Ruby**
+
+Install the package:
+
+```
+// You can use other msgpack implementations.
+sudo gem install msgpack
+sudo gem install easy-uuid
+```
+
+Example:
+
+```ruby
+require 'msgpack'
+require 'base64'
+require 'uuid'
+
+memo = Base64.encode64(MessagePack.pack({
+    'A' => UUID.parse("c6d0c728-2624-429b-8e0d-d9d19b6592fa").to_raw
+}))
 ```
 
 ## Instant Exchange Return
 
 ExinCore will send asset to the pay account with base64 encoded MessagePack data as the memo.
 
-```golang
+```go
 type OrderAction struct {
-    C	integer		// code
-    P	string		// price, only type is return
-    F	string		// ExinCore fee, only type is return
-    FA	string		// ExinCore fee asset, only type is return
-    T	string		// type: refund(F)|return(R)|Error(E)
-    O	uuid.UUID	// order: trace_id
+    C  integer    // code
+    P  string     // price, only type is return
+    F  string     // ExinCore fee, only type is return
+    FA string     // ExinCore fee asset, only type is return
+    T  string     // type: refund(F)|return(R)|Error(E)
+    O  uuid.UUID  // order: trace_id
 }
 
 memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
-    C: 1000,
-    P: "0.46372",
-    F:	"0.000023",
+    C:  1000,
+    P:  "0.46372",
+    F:  "0.000023",
     FA: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
-    T: "F"
-    O: uuid.FromString("37af6bd0-ecb8-11e8-9be4-3be93718305e"),
+    T:  "F"
+    O:  uuid.FromString("37af6bd0-ecb8-11e8-9be4-3be93718305e"),
 }))
 
 memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
@@ -124,13 +152,13 @@ memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
 **Parameter Description**
 
 |Parameter|Description|
-|:---	|:---|
-|C		|[Code](#Code)|
-|P		|The Exchange price includ exchange fee|
-|F		|The amount of ExinCore fee|
-|FA		|The UUID of ExinCore fee asset|
-|T		|Transfer type. `F` is refund, refund will not happen if the memo is not valid base64 encoded MessagePack data. `R` is return after exchange success. `E` is error, such as insufficient funds pool, it will retry until successful.|
-|O		|Order ID, the same as `trace_id`|
+|:---|:---|
+|C   |[Code](#Code)|
+|P   |The Exchange price includ exchange fee|
+|F   |The amount of ExinCore fee|
+|FA  |The UUID of ExinCore fee asset|
+|T   |Transfer type. `F` is refund, refund will not happen if the memo is not valid base64 encoded MessagePack data. `R` is return after exchange success. `E` is error, such as insufficient funds pool, it will retry until successful.|
+|O   |Order ID, the same as `trace_id`|
 
 ## API of Get Instant Exchange List
 
@@ -159,16 +187,16 @@ GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d
 
 **Parameter Description**
 
-|Parameter				|Description|
-|:---						|:---|
-|base\_asset				|The UUID of pay asset|
-|base\_asset\_symbol	|The symbol of pay asset|
-|echange\_asset			|The UUID of exchange asset|
-|echange\_asset\_symbol	|The symbol of exchange asset|
-|minimum\_amount			|The minimum of pay asset|
-|maximum\_amount			|The maximum of pay asset|
-|exchanges				|The exchange platforms|
-|price						|The trade price, `echange_asset` price/`base_asset` price, for reference only, subject to actual transaction price|
+|Parameter|Description|
+|:---|:---|
+|base\_asset             |The UUID of pay asset|
+|base\_asset\_symbol     |The symbol of pay asset|
+|echange\_asset          |The UUID of exchange asset|
+|echange\_asset\_symbol  |The symbol of exchange asset|
+|minimum\_amount         |The minimum of pay asset|
+|maximum\_amount         |The maximum of pay asset|
+|exchanges               |The exchange platforms|
+|price                   |The trade price, `echange_asset` price/`base_asset` price, for reference only, subject to actual transaction price|
 
 ## Fee
 
