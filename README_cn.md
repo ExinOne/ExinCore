@@ -171,7 +171,7 @@ memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
 获取 ExinCore 支持的闪兑换列表，及兑换限额，支持参数包括`base_asset `(可选)，`exchange_asset`(可选)
 
 ```
-GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d694fa620a
+GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d694fa620a
 
 {
   "code": 0,

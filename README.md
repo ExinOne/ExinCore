@@ -170,7 +170,7 @@ memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
 Get the ExinCore the support list of instent exchange with `base_asset `(optional), `exchange_asset`(optional)
 
 ```
-GET https://exinone.com/exincore/markets?base_asset =815b0b1a-2764-3736-8faa-42d694fa620a
+GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d694fa620a
 
 {
   "code": 0,
