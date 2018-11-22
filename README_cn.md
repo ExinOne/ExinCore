@@ -3,9 +3,9 @@
 
 # ExinCore
 
-ExinCore 是基于 Mixin Network 的去中心化数字资产闪兑平台。只需要发送一笔包含拟兑换的数字币UUID转账给 ExinCore 账户，ExinCore 就对自动将交易通过 API 提交给相应的交易所（目前支持`币安` `火币全球` `BigOne` `Okex` `FCoin`），完成后将兑换后的数字币原路转回，整个过程不到1秒即可完成兑换。所有交易数据均编码后上链。
+ExinCore 是基于 [Mixin Network](https://mixin.one) 的去中心化数字资产闪兑平台。只需要发送一笔包含拟兑换的数字币UUID转账给 ExinCore 账户，ExinCore 就对自动将交易通过 API 提交给相应的交易所（目前支持`币安` `火币全球` `BigOne` `Okex` `FCoin`），完成后将兑换后的数字币原路转回，整个过程不到1秒即可完成兑换。所有交易数据均编码后上链。
 
-ExinCore 主要提供给具备开发能力的专业用户使用，普通用户使用 ExinOne (https://exinone.com) 即可以享受去中心化的闪兑服务，ExinOne 同时还提供法币交易服务。
+ExinCore 主要提供给具备开发能力的专业用户使用，普通用户使用 [ExinOne](https://exinone.com) 即可以享受去中心化的闪兑服务，ExinOne 同时还提供法币交易服务。
 
 
 ## 优势
@@ -69,23 +69,23 @@ $memo = base64_encode(msgpack_pack([
 ]));
 ```
 
-**Ruby**
+**Python**
 
 Install msgpack extension:
 
 ```
-sudo gem install msgpack
+pip install msgpack
 ```
 
 Example:
 
-```ruby
-require 'msgpack'
-require 'base64'
+```python
+import uuid,msgpack,base64
 
-memo = Base64.encode64(MessagePack.pack("c6d0c728-2624-429b-8e0d-d9d19b6592fa"))
+memo = base64.b64encode(msgpack.packb({
+	"A": uuid.UUID("{c6d0c728-2624-429b-8e0d-d9d19b6592fa}").bytes
+}));
 ```
-
 
 ## 交易返回
 

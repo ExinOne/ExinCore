@@ -4,11 +4,11 @@
 # ExinCore
 
 
-ExinCore is a decentralized **instant exchange platform** built on Mixin Network, to use ExinCore, just send a asset transfer to ExinCore, ExinCore will auto use API to trade in exchange like `Binance`, `Huobi Global`, `BigOne`, `Okex`, `FCoin`, ruturn to pay account after exchange, complete within 1 second.
+ExinCore is a decentralized **instant exchange platform** built on [Mixin Network](https://mixin.one), to use ExinCore, just send a asset transfer to ExinCore, ExinCore will auto use API to trade in exchange like `Binance`, `Huobi Global`, `BigOne`, `Okex`, `FCoin`, ruturn to pay account after exchange, complete within 1 second.
 
 All order and trade data are encoded in the Mixin snapshots' memo field, the memo is base64 encoded MessagePack.
 
-ExinCore is available to professional users with programming skills, general user enjoy the Instant-Exchange service, and the OTC service at ExinOne (https://exinone.com).
+ExinCore is available to professional users with programming skills, general user enjoy the Instant-Exchange service, and the OTC service at [ExinOne](https://exinone.com).
 
 
 ## Features
@@ -73,23 +73,23 @@ $memo = base64_encode(msgpack_pack([
 ]));
 ```
 
-**Ruby**
+**Python**
 
 Install msgpack extension:
 
 ```
-sudo gem install msgpack
+pip install msgpack
 ```
 
 Example:
 
-```ruby
-require 'msgpack'
-require 'base64'
+```python
+import uuid,msgpack,base64
 
-memo = Base64.encode64(MessagePack.pack("c6d0c728-2624-429b-8e0d-d9d19b6592fa"))
+memo = base64.b64encode(msgpack.packb({
+	"A": uuid.UUID("{c6d0c728-2624-429b-8e0d-d9d19b6592fa}").bytes
+}));
 ```
-
 
 ## Instant Exchange Return
 
