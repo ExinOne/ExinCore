@@ -21,7 +21,7 @@ ExinCore is available to professional users with programming skills, general use
 
 ## Create Order
 
-To exchange 10 USDT to BTC, send a 10 USDT transfer to ExinCore (61103d28-3ac2-44a2-ae34-bd956070dab1) with base64 encoded MessagePack data as the memo. [A Example to test](https://exinone.com/exincore/test)
+To exchange 10 USDT to BTC, send a 10 USDT transfer to ExinCore (61103d28-3ac2-44a2-ae34-bd956070dab1) with base64 encoded MessagePack data as the memo. [A example to test](https://exinone.com/exincore/test).
 
 ### Transfer
 
