@@ -33,12 +33,26 @@ https://developers.mixin.one/api/alpha-mixin-network/transfer/
 
 **Golang**
 
+引入包：
+```
+// 可自行选择 msgpack 的实现
+go get -u github.com/vmihailenco/msgpack
+```
+
 ```golang
+import (
+    "encoding/base64"
+    "fmt"
+    "github.com/satori/go.uuid"
+    "gopkg.in/vmihailenco/msgpack.v2"
+)
+
 type OrderAction struct {
     A	uuid.UUID	// asset uuid
 }
 
-memo := base64.StdEncoding.EncodeToString(msgpack(OrderAction{
+// 
+memo := base64.StdEncoding.EncodeToString(msgpack.Marshal(OrderAction{
     A: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
 }))
 ```
@@ -80,12 +94,35 @@ pip install msgpack
 Example:
 
 ```python
-import uuid,msgpack,base64
+import uuid, msgpack, base64
 
 memo = base64.b64encode(msgpack.packb({
-	"A": uuid.UUID("{c6d0c728-2624-429b-8e0d-d9d19b6592fa}").bytes
-}));
+    "A": uuid.UUID("{c6d0c728-2624-429b-8e0d-d9d19b6592fa}").bytes
+}))
 ```
+
+**Ruby**
+
+引入包
+
+```
+// 可自行选择 msgpack 的实现
+sudo gem install msgpack
+sudo gem install easy-uuid
+```
+
+编码：
+
+```ruby
+require 'msgpack'
+require 'base64'
+require 'uuid'
+
+memo = Base64.encode64(MessagePack.pack({
+    'A' => UUID.parse("c6d0c728-2624-429b-8e0d-d9d19b6592fa").to_raw
+}))
+```
+
 
 ## 交易返回
 
