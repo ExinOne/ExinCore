@@ -1,5 +1,8 @@
 
 <p align="center"><img src="./logos/ExinCore.png" width="300"></p>
+<p align="center">
+<a href="README.md"><img src="https://img.shields.io/badge/language-English-red.svg?longCache=true&style=flat-square"></a>
+</p>
 
 # ExinCore
 
@@ -19,9 +22,7 @@ ExinCore 主要提供给具备开发能力的专业用户使用，普通用户�
 
 ## 创建订单
 
-将 10 USDT 兑换为 BTC，只需要在 Mixin Network 上将 10 USDT 转给 ExinCore (61103d28-3ac2-44a2-ae34-bd956070dab1) 并携带经过 Base64 编码的 MessagePack 格式 Memo，如：
-
-https://mixin.one/pay?recipient=61103d28-3ac2-44a2-ae34-bd956070dab1&asset=815b0b1a-2764-3736-8faa-42d694fa620a&amount=10&trace=2c89ae40-ed6c-11e8-82ee-1b1d15485280&memo=gaFBsMbQxygmJEKbjg3Z0Ztlkvo=
+将 10 USDT 兑换为 BTC，只需要在 Mixin Network 上将 10 USDT 转给 ExinCore (61103d28-3ac2-44a2-ae34-bd956070dab1) 并携带经过 Base64 编码的 MessagePack 格式 Memo。[体验用例](https://exinone.com/exincore/test)
 
 ### 转账
 
