@@ -1,4 +1,7 @@
 <p align="center"><img src="./logos/ExinCore.png" width="300"></p>
+<p align="center">
+<a href="README_cn.md"><img src="https://img.shields.io/badge/language-中文文档-red.svg?longCache=true&style=flat-square"></a>
+</p>
 
 # ExinCore
 
@@ -32,11 +35,13 @@ https://developers.mixin.one/api/alpha-mixin-network/transfer/
 
 **Golang**
 
+Install the package:
 ```
 // You can use other msgpack implementations.
 go get -u github.com/vmihailenco/msgpack
 ```
 
+Example:
 ```go
 import (
     "encoding/base64"
@@ -81,7 +86,7 @@ $memo = base64_encode(msgpack_pack([
 
 **Python**
 
-Install msgpack extension:
+Install the package:
 
 ```
 pip install msgpack

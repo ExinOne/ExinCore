@@ -83,13 +83,13 @@ $memo = base64_encode(msgpack_pack([
 
 **Python**
 
-Install msgpack extension:
+引入包：
 
 ```
 pip install msgpack
 ```
 
-Example:
+编码：
 
 ```python
 import uuid, msgpack, base64
