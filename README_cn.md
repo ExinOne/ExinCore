@@ -93,7 +93,9 @@ pip install msgpack
 编码：
 
 ```python
-import uuid, msgpack, base64
+import uuid
+import msgpack
+import base64
 
 memo = base64.b64encode(msgpack.packb({
     "A": uuid.UUID("{c6d0c728-2624-429b-8e0d-d9d19b6592fa}").bytes
