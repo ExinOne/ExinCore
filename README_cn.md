@@ -101,7 +101,7 @@ memo = base64.b64encode(msgpack.packb({
 
 **Ruby**
 
-引入包
+引入包：
 
 ```
 // 可自行选择 msgpack 的实现
@@ -119,6 +119,39 @@ require 'uuid'
 memo = Base64.encode64(MessagePack.pack({
     'A' => UUID.parse("c6d0c728-2624-429b-8e0d-d9d19b6592fa").to_raw
 }))
+```
+
+**Node.js**
+
+引入包：
+
+```
+npm install msgpack5;
+```
+
+编码：
+
+```javascript
+const msgpack = require('msgpack5')();
+
+// 打包 memo
+const bytes = Buffer.from(
+  'c6d0c728-2624-429b-8e0d-d9d19b6592fa'.replace(/-/g, ''),
+  'hex'
+);
+const memo = msgpack
+  .encode({
+    A: bytes,
+  })
+  .toString('base64');
+
+console.log(memo); // gaFBxBDG0McoJiRCm44N2dGbZZL6
+
+// 解包 memo
+const buf = Buffer.from(memo, 'base64');
+const hexStr = Buffer.from(msgpack.decode(buf).A).toString('hex');
+const uuid = `${hexStr.slice(0,8)}-${hexStr.slice(8,12)}-${hexStr.slice(12,16)}-${hexStr.slice(16,20)}-${hexStr.slice(20)}`;
+console.log(uuid); // c6d0c728-2624-429b-8e0d-d9d19b6592fa
 ```
 
 ## 交易返回
