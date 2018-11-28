@@ -84,17 +84,17 @@ $memo = base64_encode(MessagePack::pack([
 引入包：
 
 ```
-pip install msgpack
+pip install u-msgpack-python
 ```
 
 编码：
 
 ```python
 import uuid
-import msgpack
+import umsgpack
 import base64
 
-memo = base64.b64encode(msgpack.packb({
+memo = base64.b64encode(umsgpack.packb({
     "A": uuid.UUID("{c6d0c728-2624-429b-8e0d-d9d19b6592fa}").bytes
 }))
 ```
