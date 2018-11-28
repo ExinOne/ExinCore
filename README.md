@@ -120,6 +120,39 @@ memo = Base64.encode64(MessagePack.pack({
 }))
 ```
 
+**Node.js**
+
+Install the package:
+
+```
+npm install msgpack5;
+```
+
+Example:
+
+```javascript
+const msgpack = require('msgpack5')();
+
+// Pack memo
+const bytes = Buffer.from(
+  'c6d0c728-2624-429b-8e0d-d9d19b6592fa'.replace(/-/g, ''),
+  'hex'
+);
+const memo = msgpack
+  .encode({
+    A: bytes,
+  })
+  .toString('base64');
+
+console.log(memo); // gaFBxBDG0McoJiRCm44N2dGbZZL6
+
+// Parse memo
+const buf = Buffer.from(memo, 'base64');
+const hexStr = Buffer.from(msgpack.decode(buf).A).toString('hex');
+const uuid = `${hexStr.slice(0,8)}-${hexStr.slice(8,12)}-${hexStr.slice(12,16)}-${hexStr.slice(16,20)}-${hexStr.slice(20)}`;
+console.log(uuid); // c6d0c728-2624-429b-8e0d-d9d19b6592fa
+```
+
 ## Instant Exchange Return
 
 ExinCore will send asset to the pay account with base64 encoded MessagePack data as the memo.
