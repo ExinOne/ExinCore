@@ -58,16 +58,11 @@ memo := base64.StdEncoding.EncodeToString(msgpack.Marshal(OrderAction{
 
 **PHP**
 
-Install msgpack extension:
-
-```
-sudo pecl install msgpack
-```
-
 Install the package:
 
 ```
 composer require ramsey/uuid
+composer require rybakit/msgpack
 ```
 
 Example:
@@ -76,8 +71,9 @@ Example:
 require 'vendor/autoload.php';
 
 use Ramsey\Uuid\Uuid;
+use MessagePack\MessagePack;
 
-$memo = base64_encode(msgpack_pack([
+$memo = base64_encode(MessagePack::pack([
     'A' => Uuid::fromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa")->getBytes(),
 ]));
 ```
