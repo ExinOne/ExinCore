@@ -51,9 +51,18 @@ type OrderAction struct {
     A  uuid.UUID  // asset uuid
 }
 
-memo := base64.StdEncoding.EncodeToString(msgpack.Marshal(OrderAction{
-    A: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
-}))
+// Pack memo
+packUuid, _ := uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa")
+pack, _ := msgpack.Marshal(OrderAction{A: packUuid,})
+memo := base64.StdEncoding.EncodeToString(pack)
+// gaFBxBDG0McoJiRCm44N2dGbZZL6
+
+// Parse memo
+parsedpack, _ := base64.StdEncoding.DecodeString(memo)
+orderAction := OrderAction{}
+_ = msgpack.Unmarshal(parsedpack, &orderAction)
+// c6d0c728-2624-429b-8e0d-d9d19b6592fa
+
 ```
 
 **PHP**
@@ -73,9 +82,17 @@ require 'vendor/autoload.php';
 use Ramsey\Uuid\Uuid;
 use MessagePack\MessagePack;
 
+// Pack memo
 $memo = base64_encode(MessagePack::pack([
     'A' => Uuid::fromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa")->getBytes(),
 ]));
+// gaFBxBDG0McoJiRCm44N2dGbZZL6
+
+// Parse memo
+$uuid = Uuid::fromBytes(
+    MessagePack::unpack(base64_decode($memo))['A']
+)->toString();
+// c6d0c728-2624-429b-8e0d-d9d19b6592fa
 ```
 
 **Python**
@@ -93,9 +110,17 @@ import uuid
 import umsgpack
 import base64
 
+# Pack memo
 memo = base64.b64encode(umsgpack.packb({
     "A": uuid.UUID("{c6d0c728-2624-429b-8e0d-d9d19b6592fa}").bytes
 }))
+# gaFBxBDG0McoJiRCm44N2dGbZZL6
+
+# Parse memo
+uuid = uuid.UUID(
+    bytes=umsgpack.unpackb(base64.b64decode(memo))["A"]
+)
+# c6d0c728-2624-429b-8e0d-d9d19b6592fa
 ```
 
 **Ruby**
@@ -115,9 +140,15 @@ require 'msgpack'
 require 'base64'
 require 'uuid'
 
+# Pack memo
 memo = Base64.encode64(MessagePack.pack({
     'A' => UUID.parse("c6d0c728-2624-429b-8e0d-d9d19b6592fa").to_raw
 }))
+# gaFBxBDG0McoJiRCm44N2dGbZZL6
+
+# Parse memo
+uuid = UUID.parse(MessagePack.unpack(Base64.decode64(memo))["A"]).to_s
+# c6d0c728-2624-429b-8e0d-d9d19b6592fa
 ```
 
 **Node.js**
@@ -125,7 +156,7 @@ memo = Base64.encode64(MessagePack.pack({
 Install the package:
 
 ```
-npm install msgpack5;
+npm install msgpack5
 ```
 
 Example:
