@@ -1,4 +1,4 @@
-<p align="center"><img src="./logos/ExinCore.png" width="300"></p>
+<p align="center"><img src="./logos/ExinCore/ExinCore.png" width="300"></p>
 <p align="center">
 <a href="README_cn.md"><img src="https://img.shields.io/badge/language-中文文档-red.svg?longCache=true&style=flat-square"></a>
 </p>
