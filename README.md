@@ -205,7 +205,7 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
 
 ## Fee
 
-- 0.2% of the filled part after December 15, 2018, and free before the time
+- 0.2% of the filled part
 - Deduct from the exchange asset
 - Not support the *ExinOne Point Card* (EPC)
 
