@@ -1,12 +1,12 @@
 
-<p align="center"><img src="./logos/ExinCore.png" width="300"></p>
+<p align="center"><img src="./logos/ExinCore/ExinCore.png" width="300"></p>
 <p align="center">
 <a href="README.md"><img src="https://img.shields.io/badge/language-English-red.svg?longCache=true&style=flat-square"></a>
 </p>
 
 # ExinCore
 
-ExinCore 是基于 [Mixin Network](https://mixin.one) 的去中心化数字资产闪兑平台。只需要发送一笔包含拟兑换的数字币UUID转账给 ExinCore 账户，ExinCore 就对自动将交易通过 API 提交给相应的交易所（目前支持`币安` `火币全球` `BigOne` `Okex` `FCoin`），完成后将兑换后的数字币原路转回，整个过程不到1秒即可完成兑换。所有交易数据均编码后上链。
+ExinCore 是基于 [Mixin Network](https://mixin.one) 的去中心化数字资产闪兑平台。只需要发送一笔包含拟兑换的数字币 UUID 转账给 ExinCore 账户，ExinCore 就对自动将交易通过 API 提交给相应的交易所（目前支持 `币安` `火币全球` `BigOne` `Okex` `FCoin` ），完成后将兑换后的数字币原路转回，整个过程不到 1 秒即可完成兑换。所有交易数据均编码后上链。
 
 ExinCore 主要提供给具备开发能力的专业用户使用，普通用户使用 [ExinOne](https://exinone.com) 即可以享受去中心化的闪兑服务，ExinOne 同时还提供法币交易服务。
 
@@ -16,7 +16,7 @@ ExinCore 主要提供给具备开发能力的专业用户使用，普通用户�
 - **安全**：去中心化交易，不托管资产，自己保管钱包，无需信任 ExinCore
 - **流动性好**：每一个交易对都会对接流动性最好的交易所，确保市场价成交
 - **便宜**：不同于链上转账，在 Mixin Networkd 转账无需手续费，交易手续费也仅收取 0.2%
-- **快**：收到订单之后，我们会立即利用自由资金池在交易所交易，1秒之内即可完成整个交易转账过程
+- **快**：收到订单之后，我们会立即利用自由资金池在交易所交易，1 秒之内即可完成整个交易转账过程
 - **跨链**：理论上 ExinCore 可以支持所有 Mixin Network 支持的公链所有币，目前已经支持`BTC` `ETH` `BCH` `EOS` `USDT`等主流币种之间的兑换
 
 
@@ -41,7 +41,7 @@ go get -u github.com/vmihailenco/msgpack
 ```
 
 编码：
-```golang
+```go
 import (
     "encoding/base64"
     "github.com/satori/go.uuid"
@@ -52,23 +52,26 @@ type OrderAction struct {
     A  uuid.UUID  // asset uuid
 }
 
-memo := base64.StdEncoding.EncodeToString(msgpack.Marshal(OrderAction{
-    A: uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa"),
-}))
+// 打包 memo
+packUuid, _ := uuid.FromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa")
+pack, _ := msgpack.Marshal(OrderAction{A: packUuid,})
+memo := base64.StdEncoding.EncodeToString(pack)
+// gaFBxBDG0McoJiRCm44N2dGbZZL6
+
+// 解包 memo
+parsedpack, _ := base64.StdEncoding.DecodeString(memo)
+orderAction := OrderAction{}
+_ = msgpack.Unmarshal(parsedpack, &orderAction)
+// c6d0c728-2624-429b-8e0d-d9d19b6592fa
 ```
 
 **PHP**
-
-安装 msgpack 扩展：
-
-```
-sudo pecl install msgpack
-```
 
 引入包：
 
 ```
 composer require ramsey/uuid
+composer require rybakit/msgpack
 ```
 
 编码：
@@ -77,10 +80,19 @@ composer require ramsey/uuid
 require 'vendor/autoload.php';
 
 use Ramsey\Uuid\Uuid;
+use MessagePack\MessagePack;
 
-$memo = base64_encode(msgpack_pack([
+// 打包 memo
+$memo = base64_encode(MessagePack::pack([
     'A' => Uuid::fromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa")->getBytes(),
 ]));
+// gaFBxBDG0McoJiRCm44N2dGbZZL6
+
+// 解包 memo
+$uuid = Uuid::fromBytes(
+    MessagePack::unpack(base64_decode($memo))['A']
+)->toString();
+// c6d0c728-2624-429b-8e0d-d9d19b6592fa
 ```
 
 **Python**
@@ -88,24 +100,32 @@ $memo = base64_encode(msgpack_pack([
 引入包：
 
 ```
-pip install msgpack
+pip install u-msgpack-python
 ```
 
 编码：
 
 ```python
 import uuid
-import msgpack
+import umsgpack
 import base64
 
-memo = base64.b64encode(msgpack.packb({
+# 打包 memo
+memo = base64.b64encode(umsgpack.packb({
     "A": uuid.UUID("{c6d0c728-2624-429b-8e0d-d9d19b6592fa}").bytes
 }))
+# gaFBxBDG0McoJiRCm44N2dGbZZL6
+
+# 解包 memo
+uuid = uuid.UUID(
+    bytes=umsgpack.unpackb(base64.b64decode(memo))["A"]
+)
+# c6d0c728-2624-429b-8e0d-d9d19b6592fa
 ```
 
 **Ruby**
 
-引入包
+引入包：
 
 ```
 // 可自行选择 msgpack 的实现
@@ -120,9 +140,48 @@ require 'msgpack'
 require 'base64'
 require 'uuid'
 
+# 打包 memo
 memo = Base64.encode64(MessagePack.pack({
     'A' => UUID.parse("c6d0c728-2624-429b-8e0d-d9d19b6592fa").to_raw
 }))
+# gaFBxBDG0McoJiRCm44N2dGbZZL6
+
+# 解包 memo
+uuid = UUID.parse(MessagePack.unpack(Base64.decode64(memo))["A"]).to_s
+# c6d0c728-2624-429b-8e0d-d9d19b6592fa
+```
+
+**Node.js**
+
+引入包：
+
+```
+npm install msgpack5
+```
+
+编码：
+
+```javascript
+const msgpack = require('msgpack5')();
+
+// 打包 memo
+const bytes = Buffer.from(
+  'c6d0c728-2624-429b-8e0d-d9d19b6592fa'.replace(/-/g, ''),
+  'hex'
+);
+const memo = msgpack
+  .encode({
+    A: bytes,
+  })
+  .toString('base64');
+
+console.log(memo); // gaFBxBDG0McoJiRCm44N2dGbZZL6
+
+// 解包 memo
+const buf = Buffer.from(memo, 'base64');
+const hexStr = Buffer.from(msgpack.decode(buf).A).toString('hex');
+const uuid = `${hexStr.slice(0,8)}-${hexStr.slice(8,12)}-${hexStr.slice(12,16)}-${hexStr.slice(16,20)}-${hexStr.slice(20)}`;
+console.log(uuid); // c6d0c728-2624-429b-8e0d-d9d19b6592fa
 ```
 
 ## 交易返回
@@ -163,12 +222,12 @@ memo = base64.StdEncoding.EncodeToString(msgpack(OrderAction{
 |P|成交价格，包含交易所手续费，如果交易不成功则为0|
 |F|ExinCore 手续费|
 |FA|ExinCore 手续费资产|
-|T|转账类型，`F`表示refund退币，如果memo不是合法编码数据将不会退币，`R`表示return兑换返回，`E`表示error转账失败（比如突然资金池不足），将会以一笔小额EPC转账携带，资金池充裕后会重新发起转账|
+|T|转账类型，`F` 表示 refund 退币，如果 memo 不是合法编码数据将不会退币，`R` 表示 return兑换返回，`E` 表示 error 转账失败（比如突然资金池不足），将会以一笔小额 EPC 转账携带，资金池充裕后会重新发起转账|
 |O|订单ID，与发起转移转账的`trace_id`相同|
 
 ## 兑换列表API
 
-获取 ExinCore 支持的闪兑换列表，及兑换限额，支持参数包括`base_asset `(可选)，`exchange_asset`(可选)
+获取 ExinCore 支持的闪兑换列表，及兑换限额，支持参数包括 `base_asset` (可选)，`exchange_asset` (可选)
 
 ```
 GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d694fa620a
@@ -195,14 +254,14 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
 
 |参数|描述|
 |:---|:---|
-|base\_asset|支付兑换的资产UUID|
+|base\_asset|支付兑换的资产 UUID|
 |base\_asset\_symbol|支付兑换的资产|
-|echange\_asset|兑换资产UUID|
+|echange\_asset|兑换资产 UUID|
 |echange\_asset\_symbol|兑换资产|
-|minimum\_amount|最少兑换数量(base_asset)，少于这个数字将退回|
-|maximum\_amount|最多兑换数量(base_asset)，多余这个数字将退回|
+|minimum\_amount|最少兑换数量 (base_asset) ，少于这个数字将退回|
+|maximum\_amount|最多兑换数量 (base_asset) ，多余这个数字将退回|
 |exchanges|交易平台，以实际成交为准|
-|price|兑换价格，`echange_asset`价格/`base_asset`价格，仅供参考，以实际成交价为准|
+|price|兑换价格，`echange_asset` 价格/`base_asset` 价格，仅供参考，以实际成交价为准|
 
 ## 手续费
 
