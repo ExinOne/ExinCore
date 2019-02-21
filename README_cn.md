@@ -84,7 +84,7 @@ use MessagePack\MessagePack;
 
 // 打包 memo
 $memo = base64_encode(MessagePack::pack([
-    'A' => Uuid::fromString("c6d0c728-2624-429b-8e0d-d9d19b6592fa")->getBytes(),
+    'A' => Uuid::fromString('c6d0c728-2624-429b-8e0d-d9d19b6592fa')->getBytes(),
 ]));
 // gaFBxBDG0McoJiRCm44N2dGbZZL6
 
