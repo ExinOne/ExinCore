@@ -242,8 +242,8 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
     {
       "base_asset": "815b0b1a-2764-3736-8faa-42d694fa620a",
       "base_asset_symbol": "USDT",
-      "echange_asset": "c6d0c728-2624-429b-8e0d-d9d19b6592fa",
-      "echange_asset_symbol": "BTC",
+      "exchange_asset": "c6d0c728-2624-429b-8e0d-d9d19b6592fa",
+      "exchange_asset_symbol": "BTC",
       "minimum_amount": "1",
       "maximum_amount": "100",
       "exchanges": ["Huobi Global"],
@@ -260,12 +260,12 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
 |:---|:---|
 |base\_asset             |The UUID of pay asset|
 |base\_asset\_symbol     |The symbol of pay asset|
-|echange\_asset          |The UUID of exchange asset|
-|echange\_asset\_symbol  |The symbol of exchange asset|
+|exchange\_asset          |The UUID of exchange asset|
+|exchange\_asset\_symbol  |The symbol of exchange asset|
 |minimum\_amount         |The minimum of pay asset|
 |maximum\_amount         |The maximum of pay asset|
 |exchanges               |The exchange platforms|
-|price                   |The trade price, `echange_asset` price/`base_asset` price, for reference only, subject to actual transaction price|
+|price                   |The trade price, `exchange_asset` price/`base_asset` price, for reference only, subject to actual transaction price|
 
 ## Fee
 

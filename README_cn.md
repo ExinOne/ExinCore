@@ -242,8 +242,8 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
     {
       "base_asset": "815b0b1a-2764-3736-8faa-42d694fa620a",
       "base_asset_symbol": "USDT",
-      "echange_asset": "c6d0c728-2624-429b-8e0d-d9d19b6592fa",
-      "echange_asset_symbol": "BTC",
+      "exchange_asset": "c6d0c728-2624-429b-8e0d-d9d19b6592fa",
+      "exchange_asset_symbol": "BTC",
       "minimum_amount": "1",
       "maximum_amount": "100",
       "exchanges": ["Huobi Global"],
@@ -260,12 +260,12 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
 |:---|:---|
 |base\_asset|支付兑换的资产 UUID|
 |base\_asset\_symbol|支付兑换的资产|
-|echange\_asset|兑换资产 UUID|
-|echange\_asset\_symbol|兑换资产|
+|exchange\_asset|兑换资产 UUID|
+|exchange\_asset\_symbol|兑换资产|
 |minimum\_amount|最少兑换数量 (base_asset) ，少于这个数字将退回|
 |maximum\_amount|最多兑换数量 (base_asset) ，多余这个数字将退回|
 |exchanges|交易平台，以实际成交为准|
-|price|兑换价格，`echange_asset` 价格/`base_asset` 价格，仅供参考，以实际成交价为准|
+|price|兑换价格，`exchange_asset` 价格/`base_asset` 价格，仅供参考，以实际成交价为准|
 
 ## 手续费
 
