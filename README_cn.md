@@ -65,6 +65,9 @@ _ = msgpack.Unmarshal(parsedpack, &orderAction)
 // c6d0c728-2624-429b-8e0d-d9d19b6592fa
 ```
 
+可以考虑使用封装的 Package:
+* [Kurisu-package/exincore-go](https://github.com/Kurisu-package/exincore-go)
+
 **PHP**
 
 引入包：
