@@ -98,7 +98,7 @@ $uuid = Uuid::fromBytes(
 // c6d0c728-2624-429b-8e0d-d9d19b6592fa
 ```
 
-同样可以考虑使用我们封装的 SDK
+可以考虑使用封装的 Package:
 * php: [kurisu/exincore-php-sdk](https://github.com/Kurisu-package/exincore-php-sdk)
 * laravel: [kurisu/laravel-exincore-sdk](https://github.com/Kurisu-package/laravel-exincore-sdk)
 
