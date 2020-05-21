@@ -34,9 +34,9 @@ https://developers.mixin.one/api/alpha-mixin-network/transfer/
 **Golang**
 
 Install the package:
-```
+```shell
 // You can use other msgpack implementations.
-go get -u github.com/vmihailenco/msgpack
+$ go get -u github.com/vmihailenco/msgpack
 ```
 
 Example:
@@ -71,14 +71,15 @@ Also you can use some packages:
 
 Install the package:
 
-```
-composer require ramsey/uuid
-composer require rybakit/msgpack
+```shell
+$ composer require ramsey/uuid
+$ composer require rybakit/msgpack
 ```
 
 Example:
 
 ```php
+<?php
 require 'vendor/autoload.php';
 
 use Ramsey\Uuid\Uuid;
@@ -105,8 +106,8 @@ Also you can use some packages
 
 Install the package:
 
-```
-pip install u-msgpack-python
+```shell
+$ pip install u-msgpack-python
 ```
 
 Example:
@@ -133,10 +134,10 @@ uuid = uuid.UUID(
 
 Install the package:
 
-```
+```shell
 // You can use other msgpack implementations.
-sudo gem install msgpack
-sudo gem install easy-uuid
+$ sudo gem install msgpack
+$ sudo gem install easy-uuid
 ```
 
 Example:
@@ -161,8 +162,8 @@ uuid = UUID.parse(MessagePack.unpack(Base64.decode64(memo))["A"]).to_s
 
 Install the package:
 
-```
-npm install msgpack5
+```shell
+$ npm install msgpack5
 ```
 
 Example:
