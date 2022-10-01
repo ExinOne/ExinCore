@@ -318,7 +318,7 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
 ## Application
 
 <p align="left">
-  <a target="_blank" href="https://exinone.com">
+  <a target="_blank" href="https://app.eiduwejdk.com">
     <img src="./logos/ExinOne.png" height="80">
   </a>
 </p>
