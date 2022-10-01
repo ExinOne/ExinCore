@@ -292,8 +292,7 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
 
 ## 联系我们
 
-- 微信：ThorbJ
-- 邮箱：thorb@exin.one
+- Mixin: 7000101276
 
 ## 基于
 
@@ -313,25 +312,13 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
   <a target="_blank" href="https://www.okex.com">
     <img src="./logos/okex.png" height="80">
   </a>
-  &nbsp;
-  <a target="_blank" href="https://fcoin.com">
-    <img src="./logos/FCoin.png" height="80">
-  </a>
-  &nbsp;
-  <a target="_blank" href="https://big.one">
-    <img src="./logos/BigONE.png" height="80">
-  </a>
 </p>
 
 
 ## 谁在用
 
 <p align="left">
-  <a target="_blank" href="https://exinone.com">
+  <a target="_blank" href="https://app.eiduwejdk.com/">
     <img src="./logos/ExinOne.png" height="80">
-  </a>
-  &nbsp;
-  <a target="_blank" href="https://exinpay.one">
-    <img src="./logos/ExinPay.png" height="80">
   </a>
 </p>

@@ -5,7 +5,7 @@
 
 # ExinCore
 
-ExinCore is a decentralized **instant exchange platform** built on [Mixin Network](https://mixin.one), to use ExinCore, just send a asset transfer to ExinCore, ExinCore will auto use API to trade in exchange like `Binance`, `Huobi Global`, `BigOne`, `Okex`, `FCoin`, ruturn to pay account after exchange, complete within 1 second.
+ExinCore is a decentralized **instant exchange platform** built on [Mixin Network](https://mixin.one), to use ExinCore, just send an asset transfer to ExinCore, ExinCore will auto use API to trade in exchange like `Binance`, `Huobi Global`, `BigOne`, `Okex`, `FCoin`, return to pay account after exchange, complete within 1 second.
 
 All order and trade data are encoded in the Mixin snapshots' memo field, the memo is base64 encoded MessagePack.
 
@@ -292,8 +292,7 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
 
 ## Contact
 
-- Wechat：ThorbJ
-- Email ：thorb@exin.one
+- Mixin：7000101276
 
 ## Base On
 
@@ -313,14 +312,6 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
   <a target="_blank" href="https://www.okex.com">
     <img src="./logos/okex.png" height="80">
   </a>
-  &nbsp;
-  <a target="_blank" href="https://fcoin.com">
-    <img src="./logos/FCoin.png" height="80">
-  </a>
-  &nbsp;
-  <a target="_blank" href="https://big.one">
-    <img src="./logos/BigONE.png" height="80">
-  </a>
 </p>
 
 
@@ -329,9 +320,5 @@ GET https://exinone.com/exincore/markets?base_asset=815b0b1a-2764-3736-8faa-42d6
 <p align="left">
   <a target="_blank" href="https://exinone.com">
     <img src="./logos/ExinOne.png" height="80">
-  </a>
-  &nbsp;
-  <a target="_blank" href="https://exinpay.one">
-    <img src="./logos/ExinPay.png" height="80">
   </a>
 </p>
